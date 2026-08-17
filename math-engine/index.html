@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal Math Engine</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Math.js for symbolic math -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.2/math.min.js"></script>
+  <!-- Chart.js for graphing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-icon">∑</span>
+      <div>
+        <h1 class="brand-title">MATH ENGINE</h1>
+        <p class="brand-sub">Universal Scientific Calculator &amp; Grapher</p>
+      </div>
+    </div>
+    <div class="header-caps">
+      <span class="cap">Algebra</span>
+      <span class="cap">Matrices</span>
+      <span class="cap">Calculus</span>
+      <span class="cap">Polar</span>
+      <span class="cap">Parametric</span>
+    </div>
+    <div class="header-eq-id">
+      <span class="eq-label">ACTIVE ID</span>
+      <span class="eq-value" id="eq-id-display">EQ-0000</span>
+    </div>
+  </header>
+
+  <!-- ── Main layout: left panel + graph ── -->
+  <main class="app-main">
+
+    <!-- ────── LEFT PANEL ────── -->
+    <aside class="panel-left">
+
+      <!-- Input Zone -->
+      <section class="input-zone">
+        <div class="type-badge" id="type-badge">Explicit y = f(x)</div>
+        <div class="entry-wrapper">
+          <input
+            type="text"
+            id="eq-input"
+            class="eq-input"
+            placeholder="sin(x) + cos(x/2)"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="btn-fire" id="btn-plot" title="Plot (Enter)">▶</button>
+        </div>
+        <!-- Syntax hints -->
+        <div class="hint-strip">
+          <span class="hint" data-insert="polar:">polar:</span>
+          <span class="hint" data-insert="param:">param:</span>
+          <span class="hint" data-insert="[[1,2],[3,4]]">matrix</span>
+          <span class="hint" data-insert=";">&nbsp;; &nbsp;</span>
+        </div>
+      </section>
+
+      <!-- Keypad -->
+      <section class="keypad" id="keypad"></section>
+
+      <!-- X Range -->
+      <section class="range-section">
+        <span class="range-label">X RANGE</span>
+        <div class="range-inputs">
+          <input type="number" id="x-min" value="-10" class="range-inp" />
+          <span class="range-sep">→</span>
+          <input type="number" id="x-max" value="10" class="range-inp" />
+          <button class="btn-apply" id="btn-apply-range">Apply</button>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <section class="action-btns">
+        <button class="action-btn primary"   id="btn-add-overlay">＋ Overlay</button>
+        <button class="action-btn danger"    id="btn-clear">✕ Clear All</button>
+        <button class="action-btn secondary" id="btn-remove-last">⌫ Remove Last</button>
+        <button class="action-btn secondary" id="btn-export-history">⬇ Export Log</button>
+      </section>
+
+      <!-- Symbolic Result -->
+      <section class="result-section">
+        <div class="section-label">SYMBOLIC RESULT</div>
+        <div class="result-box" id="result-box">
+          <span class="result-placeholder">Plot an equation to see derivative &amp; integral</span>
+        </div>
+      </section>
+
+      <!-- History -->
+      <section class="history-section">
+        <div class="section-label">SESSION HISTORY <span class="history-hint">(click to reload)</span></div>
+        <ul class="history-list" id="history-list"></ul>
+      </section>
+
+    </aside>
+
+    <!-- ────── RIGHT PANEL: GRAPH ────── -->
+    <section class="panel-right">
+      <div class="graph-ribbon">
+        <span class="ribbon-title">📈 LIVE GRAPH</span>
+        <span class="active-eqs" id="active-eqs-label">No equations plotted</span>
+        <div class="ribbon-actions">
+          <button class="btn-icon" id="btn-zoom-in"  title="Zoom In">＋</button>
+          <button class="btn-icon" id="btn-zoom-out" title="Zoom Out">－</button>
+          <button class="btn-icon" id="btn-reset-view" title="Reset View">⊙</button>
+        </div>
+      </div>
+
+      <!-- Canvas for graphing -->
+      <div class="graph-wrap" id="graph-wrap">
+        <canvas id="graph-canvas"></canvas>
+        <!-- Matrix / text overlay (shown instead of graph for matrix ops) -->
+        <div class="matrix-overlay hidden" id="matrix-overlay"></div>
+        <!-- Loading spinner -->
+        <div class="graph-loading hidden" id="graph-loading">
+          <div class="spinner"></div>
+          <span>Computing…</span>
+        </div>
+      </div>
+
+      <!-- Legend strip below graph -->
+      <div class="legend-strip" id="legend-strip"></div>
+    </section>
+
+  </main>
+
+  <!-- Scripts (order matters) -->
+  <script src="js/db.js"></script>
+  <script src="js/classify.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/grapher.js"></script>
+  <script src="js/keypad.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

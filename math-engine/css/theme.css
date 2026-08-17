@@ -1,0 +1,66 @@
+/* ── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  /* Background depth layers */
+  --bg-void:     #050B14;
+  --bg-deep:     #080F1C;
+  --bg-panel:    #0B1526;
+  --bg-surface:  #0E1C32;
+  --bg-raised:   #132340;
+  --bg-hover:    #1A2E52;
+
+  /* Primary accent — electric cyan */
+  --accent:      #00C8F0;
+  --accent-dim:  #007A9A;
+  --accent-glow: rgba(0, 200, 240, 0.18);
+
+  /* Secondary accents */
+  --gold:        #FFD166;
+  --green:       #06D6A0;
+  --red:         #EF4565;
+  --purple:      #A78BFA;
+  --orange:      #FB923C;
+
+  /* Text tiers */
+  --text-bright: #E8F4FF;
+  --text-main:   #A8BFCF;
+  --text-dim:    #4A6A80;
+  --text-ghost:  #2A4A60;
+
+  /* Borders */
+  --border:      #1A3A58;
+  --border-lit:  #2A5A7A;
+
+  /* Plot palette */
+  --plot-1: #00C8F0;
+  --plot-2: #FF6B8A;
+  --plot-3: #06D6A0;
+  --plot-4: #FFD166;
+  --plot-5: #A78BFA;
+  --plot-6: #FB923C;
+  --plot-7: #7DF9FF;
+  --plot-8: #F9C74F;
+  --plot-9: #43AA8B;
+  --plot-10:#FF4D6D;
+
+  /* Typography */
+  --font-mono:   'JetBrains Mono', 'Courier New', monospace;
+  --font-ui:     'Space Grotesk', system-ui, sans-serif;
+
+  /* Radii */
+  --r-sm:  4px;
+  --r-md:  8px;
+  --r-lg:  12px;
+  --r-xl:  16px;
+
+  /* Transitions */
+  --t-fast: 0.12s ease;
+  --t-med:  0.22s ease;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg-void);
+  color: var(--text-main);
+  font-size: 13px;
+  line-height: 1.5;
+}
